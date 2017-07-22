@@ -1,0 +1,53 @@
+Average work hours per day: ~2h
+
+6/7
+- include Biko font
+- decide to design page with Bootstrap framework
+- include Bootstrap 
+
+7/7 
+- download & include icons
+- sign up for Open Weather API
+- design purple page
+
+8/7
+- finish purple page design
+- start red page design
+
+9/7
+- move to the beach - it's Sunday!
+
+10/7
+- finish red page design
+- include jQuery
+
+11/7
+- design & animate loader image
+
+12/7
+- set onload function
+
+14/7
+- start side menu design
+
+15/7
+- finish side menu design & animation
+- work on API calls
+
+16/7 - 20/7 
+(no time to work :/ )
+
+21/7 
+- work on API calls
+
+22/7 
+- finish API calls
+- finish cross-browser testing
+- work on SEO
+- upload on GitHub
+
+
+
+
+
+
