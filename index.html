@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>umbrellapp - your best weather app</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Stay informed with the most accurate weather conditions for any city and the weather forecast for the next 5 days. Simply, your best weather app.">
+    <meta name="keywords" content="weather, forecast, today, now, conditions, best, app, umbrellapp, rain, clear, snow, predictions">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- include Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
+    <!-- include external CSS -->
+    <link rel="stylesheet" href="styles/style.css">
+
+</head>
+
+<body class="bg-blink" onload="loadComplete()">
+
+<div class="container-fluid mt-3">
+
+    <img id="loader" class="rounded-circle" src="styles/icons/other/svg/umbrella-purple.svg" alt="umbrellapp">
+    <div id="logo" class="text-center">umbrellapp</div>
+    <div id="logo-sm" class="text-center">ø</div>
+
+    <div id="buttons" class="row justify-content-between" hidden>
+        <div class="col-4 text-left">
+            &nbsp;&nbsp;
+            <img id="menu-button" src="styles/icons/other/svg/menu-button.svg" onclick="openNav()">
+        </div>
+        <div class="col-4 text-center">
+            <img id="umbrella-top" src="styles/icons/other/svg/umbrella.svg" onclick="showRedPage()" alt="umbrellapp">
+        </div>
+        <div class="col-4 text-right">
+            <span id="favorites-text" class="align-middle hidden-xs-down" hidden>Add to Favorites &nbsp;&nbsp;</span>
+            <img id="favorites-button" src="styles/icons/other/svg/favorites-button.svg" hidden>
+            &nbsp;&nbsp;
+        </div>
+    </div> <!-- end #buttons -->
+
+    <div id="red-content" class="text-center" hidden>
+        <div>type a location:</div>
+        <div id="search-bar">
+            <div id="search-group" class="input-group">
+                <input id="search-input" name="search" type="text" class="form-control rounded-0"
+                       placeholder="type here..">
+                <span class="input-group-btn">
+                    <button id="search-button" class="btn rounded-0" type="button">
+                        <img id="search-icon" src="styles/icons/other/svg/searcher.svg" alt="Search weather conditions">
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div>or give us your location</div>
+        <button id="access-button" class="btn rounded-0" type="button">
+            <img id="arrow-icon" src="styles/icons/other/svg/location-arrow.svg"> &nbsp;&nbsp;access location
+        </button>
+    </div> <!-- end #red-content -->
+
+    <div id="purple-content" hidden>
+        <div class="text-center mt-4 mt-lg-5">
+            <div id="today" class="">TODAY</div>
+            <div id="location">no data</div>
+            <div id="icon" data-icon=")"></div>
+            <div id="max-temp"><!-- data from API call --></div>
+            <div id="min-temp"><!-- data from API call --></div>
+        </div>
+        <div class="row justify-content-center mt-4 mt-lg-5">
+            <div id="day-1-group" class="col-4 col-sm-2 col-md-1 mb-4">
+                <div id="day-1" class="day-sm text-center">no data</div>
+                <div id="icon-1" class="icon-sm text-center" data-icon=")"></div>
+                <div id="max-temp-1" class="max-temp-sm text-center"><!-- data from API call --></div>
+                <div id="min-temp-1" class="min-temp-sm text-center"><!-- data from API call --></div>
+            </div>
+            <div id="day-2-group" class="col-4 col-sm-2 col-md-1 mb-4">
+                <div id="day-2" class="day-sm text-center">no data</div>
+                <div id="icon-2" class="icon-sm text-center" data-icon=")"></div>
+                <div id="max-temp-2" class="max-temp-sm text-center"><!-- data from API call --></div>
+                <div id="min-temp-2" class="min-temp-sm text-center"><!-- data from API call --></div>
+            </div>
+            <div id="day-3-group" class="col-4 col-sm-2 col-md-1 mb-4">
+                <div id="day-3" class="day-sm text-center">no data</div>
+                <div id="icon-3" class="icon-sm text-center" data-icon=")"></div>
+                <div id="max-temp-3" class="max-temp-sm text-center"><!-- data from API call --></div>
+                <div id="min-temp-3" class="min-temp-sm text-center"><!-- data from API call --></div>
+            </div>
+            <div id="day-4-group" class="col-4 col-sm-2 col-md-1 mb-4">
+                <div id="day-4" class="day-sm text-center">no data</div>
+                <div id="icon-4" class="icon-sm text-center" data-icon=")"></div>
+                <div id="max-temp-4" class="max-temp-sm text-center"><!-- data from API call --></div>
+                <div id="min-temp-4" class="min-temp-sm text-center"><!-- data from API call --></div>
+            </div>
+            <div id="day-5-group" class="col-4 col-sm-2 col-md-1 mb-4">
+                <div id="day-5" class="day-sm text-center">no data</div>
+                <div id="icon-5" class="icon-sm text-center" data-icon=")"></div>
+                <div id="max-temp-5" class="max-temp-sm text-center"><!-- data from API call --></div>
+                <div id="min-temp-5" class="min-temp-sm text-center"><!-- data from API call --></div>
+            </div>
+        </div> <!-- end forecast section -->
+    </div> <!-- end #purple-content -->
+
+    <!-- popup message -->
+    <div class="row justify-content-center">
+        <div id="popup" class="col-10 col-sm-6 col-lg-4 p-4 text-center" hidden>
+            Please enter a valid location.<br/>
+            <button id="popup-button" class="btn rounded-0 mt-3" type="button">OK</button>
+        </div>
+    </div>
+
+</div> <!-- end container -->
+
+<div id="side-menu" class="sidenav pt-4">
+    <img id="close-button" src="styles/icons/other/svg/close-button.svg" onclick="closeNav()">
+    <p class="mt-5 pt-md-3">Your<br>best<br>weather<br>app</p>
+    <img id="one-line" class="mt-3 mt-sm-4" src="styles/icons/other/svg/one-line.svg">
+    <a href="#">team</a>
+    <a href="#">history</a>
+    <a href="#">contact</a>
+    <div id="social" class="mt-5 pt-2 pt-md-4">
+        suggest to a friend<br>
+        <img id="social-fb" class="mt-1 mr-1" src="styles/icons/other/svg/facebook-logo.svg"
+             onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=WWW.WEATHERAPP.COM', '_blank');">
+        <img id="social-tw" class="mt-1 mr-1" src="styles/icons/other/svg/twitter-logo.svg"
+             onclick="window.open('https://twitter.com/home?status=Your%20best%20weather%20app%3A%0A%0AWWW.WEATHERAPP.COM', '_blank');">
+        <img id="social-gp" class="mt-1 mr-1" src="styles/icons/other/svg/google-plus-logo.svg"
+             onclick="window.open('https://plus.google.com/share?url=WWW.WEATHERAPP.COM', '_blank');">
+    </div>
+</div> <!-- end #side-menu -->
+
+<!-- include jQuery from Google CDN -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- loader screen JS -->
+<script>
+    // <body> onload: 1700ms wait + 300ms hide loader = 2000ms total
+    function loadComplete() {
+        setTimeout(function () {
+            $("#loader").hide(300, function () {
+                $("#logo, #logo-sm").hide();
+                $("body").toggleClass("bg-blink bg-red");
+                $("#buttons, #red-content").removeAttr("hidden");
+            });
+        }, 1700);
+    }
+</script>
+
+<!-- include external JS -->
+<script src="scripts/menu-buttons.js"></script>
+<script src="scripts/weather-data.js"></script>
+
+</body>
+
+</html>
+
