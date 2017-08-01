@@ -10,7 +10,7 @@ function closeNav() {
 function showRedPage() {
     if ($("body").hasClass("bg-purple")) {
         // hide 'purple page' content
-        $("#purple-content").attr("hidden", true);
+        $("#favorites-button, #favorites-text, #purple-content").attr("hidden", true);
         $("body").toggleClass("bg-red bg-purple");
         // show 'red page' content again:
         $("#red-content").show();

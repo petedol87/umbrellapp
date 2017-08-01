@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     /*** #search-button - GET WEATHER DATA BY CITY NAME IN #search-input ***/
 
-    $("#search-button").click(function () {
+    $("#search-button").on("click vclick", function () {
         var city = $("#search-input").val();    // get user's input
         if (city === "") {
             popup();
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     /*** #access-button - GET WEATHER DATA BY USER'S LOCATION  ***/
 
-    $("#access-button").click(function () {
+    $("#access-button").on("click vclick", function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(getCoordinates);
         }
